@@ -24,14 +24,14 @@ function paintShows(data) {
 
     if (dataList.image === null) {
       listShows.innerHTML += `
-            <li class="movie_list-item">
-            <h2 class="movie_title">${dataList.name}</h2>
+            <div ><li>
+            <h2>${dataList.name}</h2>
             <img src="https://via.placeholder.com/150"/>
-             </li>`;
+             </li></div`;
     } else {
       listShows.innerHTML += `
-        <li class="movie_list-item">
-        <h2 class="movie_title">${dataList.name}</h2>
+        <li>
+        <h2>${dataList.name}</h2>
         <img src="${dataList.image.medium}"/>
          </li>`;
     }
@@ -46,3 +46,10 @@ function handlerClick(event) {
 
 //EVENTO
 btn.addEventListener("click", handlerClick);
+
+//FAVORITAS
+
+function handlerClickFavourites(event) {
+  const whereTheUserClicked = event.target;
+  whereTheUserClicked.classList.toggle("favorite");
+}
