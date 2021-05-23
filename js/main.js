@@ -5,7 +5,7 @@ const btn = document.querySelector(".js-button");
 const listShows = document.querySelector(".js-list");
 
 //VARIABLES
-// let shows = [];
+let shows = [];
 
 //LLAMAR A LA API
 function callToApi() {
@@ -24,16 +24,16 @@ function paintShows(data) {
 
     if (dataList.image === null) {
       listShows.innerHTML += `
-            <div ><li>
-            <h2>${dataList.name}</h2>
-            <img src="https://via.placeholder.com/150"/>
-             </li></div`;
+            <div class="fav-container"><li>
+            <h2 class="fav-title">${dataList.name}</h2>
+            <img class="fav-image" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>
+             </li></div>`;
     } else {
       listShows.innerHTML += `
-        <li>
-        <h2>${dataList.name}</h2>
-        <img src="${dataList.image.medium}"/>
-         </li>`;
+        <div class="fav-container"><li>
+        <h2 class="fav-title">${dataList.name}</h2>
+        <img class="fav-image" src="${dataList.image.medium}"/>
+         </li></div>`;
     }
   }
 }
@@ -47,9 +47,34 @@ function handlerClick(event) {
 //EVENTO
 btn.addEventListener("click", handlerClick);
 
+//FILTRAR DATOS
+
+// function filterData() {
+//   const filter = inputText.value;
+
+//   filterDataShow = shows.filter((show) => show.name.includes(inputText));
+
+//   for (const showFav of filterDataShow) {
+//     const item = document.createElement("li");
+//     item.innerHTML = `${showFav.name} <img src=${showFav.image.medium} alt="image">`;
+//     showList.appendChild(newItem);
+//   }
+// }
+
 //FAVORITAS
 
-function handlerClickFavourites(event) {
-  const whereTheUserClicked = event.target;
+// const listShowsFavorites = document.querySelector(".js-favorite");
+// let favoriteShows = [];
+// for (let i = 0; i < favoriteShows.length; i++) {}
+
+function handlerClickFav(event) {
+  const whereTheUserClicked = event.currentTarget;
   whereTheUserClicked.classList.toggle("favorite");
+}
+function addFavoriteShow() {
+  const listShowsFavorites = document.querySelectorAll(".js-list");
+  for (const favShows of listShowsFavorites) {
+    favShows.classList.add("favorite");
+    favShows.addEventListener("click", handlerClickFav);
+  }
 }
