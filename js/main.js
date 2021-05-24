@@ -55,7 +55,7 @@ function paintShows(data) {
   for (let i = 0; i < data.length; i++) {
     console.log(data[i].show);
     const dataList = data[i].show;
-    //faltaban condicionales
+
     if (dataList.image) {
       listShows.innerHTML += `
           <li data-id="${dataList.id}" class="js-card">
@@ -72,11 +72,10 @@ function paintShows(data) {
   }
 }
 function paintShowsFav(data) {
-  // antes este data era un array de números y ahora llega un array de objetos
   listShowsFav.innerHTML = ``;
   for (let i = 0; i < data.length; i++) {
     const dataList = data[i].show;
-    //faltaban condicionales
+
     if (dataList.image) {
       listShowsFav.innerHTML += `
               <li data-id="${dataList.id}" class="js-card">
@@ -118,10 +117,40 @@ function handlerClickFav(event) {
   if (show === undefined) return;
   const isPresent = fav.find((favorite) => favorite.show.id === showId); //
   if (isPresent === undefined) {
-    fav.push(show); // empujaba número no el id, ahora empuja objeto show
+    fav.push(show);
   } else {
     fav = fav.filter((favoriteId) => favorite.show.id !== showId);
   }
-  paintShowsFav(fav); // no llamaba  a la función
+  paintShowsFav(fav);
+  localStorage.setItem("fav", JSON.stringify(fav));
 }
 addListenerToShows();
+
+// //LOCAL STORAGE
+
+// //add localStorage
+// function setLocalStorage() {
+//   localStorage.setItem("fav", JSON.stringify(fav));
+// }
+// //get localStorage
+
+// function getLocalStorage() {
+//   let getLocalFav = JSON.parse(localStorage.getItem("fav"));
+//   if (getLocalFav !== null) {
+//     fav = getLocalFav;
+//   }
+//   paintShowsFav(fav);
+// }
+
+//RESET
+const resetBtn = document.querySelector(".reset");
+function removeFavs() {
+  const updateFavs = fav.splice(index, 1);
+  localStorage.setItem("fav", JSON.stringify(favs));
+
+  const favsData = localStorage.getItem("fav");
+  if (favsData !== null) {
+    fav = JSON.parse(favsData);
+  }
+}
+resetBtn.addEventListener("click", removeFavs);
