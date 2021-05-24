@@ -26,32 +26,18 @@ function paintShows(data) {
     //buscar si la paleta que se está pintando esta en favoritos
     const isPresent = fav.find((favoriteId) => favoriteId === dataList.id);
 
-    if (dataList.image === null) {
-      listShows.innerHTML += `
-            <li data-id="${dataList.id}" class="js-card">
-            <h2>${dataList.name}</h2>
-            <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>
-             </li>`;
-    } else {
-      listShows.innerHTML += `
-        <li data-id="${dataList.id}" class="js-card">
-        <h2>${dataList.name}</h2>
-        <img src="${dataList.image.medium}"/>
-         </li>`;
-    }
-
-    if (dataList.image === null) {
+    if (isPresent === undefined) {
       listShowsFav.innerHTML += `
-            <li data-id="${dataList.id}" class="js-card favorite">
-            <h2>${dataList.name}</h2>
-            <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>
-             </li>`;
+      <li data-id="${dataList.id}" class="js-card">
+      <h2>${dataList.name}</h2>
+      <img src="${dataList.image.medium}"/>
+       </li>`;
     } else {
       listShowsFav.innerHTML += `
-        <li data-id="${dataList.id}" class="js-card favorite">
-        <h2>${dataList.name}</h2>
-        <img src="${dataList.image.medium}"/>
-         </li>`;
+      <li data-id="${dataList.id}" class="js-card favorite">
+      <h2>${dataList.name}</h2>
+      <img src="${dataList.image.medium}"/>
+       </li>`;
     }
   }
   addListenerToShows();
