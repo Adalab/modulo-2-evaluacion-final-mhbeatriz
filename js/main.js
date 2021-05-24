@@ -3,6 +3,7 @@
 const inputText = document.querySelector(".js-text");
 const btn = document.querySelector(".js-button");
 const listShows = document.querySelector(".js-list");
+const listShowsFav = document.querySelector(".js-listFav");
 
 //VARIABLES
 // let shows = [];
@@ -50,6 +51,7 @@ function handlerClick(event) {
 btn.addEventListener("click", handlerClick);
 
 //FAVORITAS
+
 function addListenerToShows() {
   const listShowsFav = document.querySelectorAll(".js-card");
   for (const listFav of listShowsFav) {
