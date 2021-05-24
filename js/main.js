@@ -5,11 +5,12 @@ const btn = document.querySelector(".js-button");
 const listShows = document.querySelector(".js-list");
 
 //VARIABLES
-let shows = [];
+// let shows = [];
+let fav = [];
 
 //LLAMAR A LA API
 function callToApi() {
-  fetch(`https://api.tvmaze.com/search/shows?q=${inputText.value}`)
+  fetch(`//api.tvmaze.com/search/shows?q=${inputText.value}`)
     .then((response) => response.json())
     .then((data) => {
       paintShows(data);
@@ -24,57 +25,41 @@ function paintShows(data) {
 
     if (dataList.image === null) {
       listShows.innerHTML += `
-            <div class="fav-container"><li>
-            <h2 class="fav-title">${dataList.name}</h2>
-            <img class="fav-image" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>
-             </li></div>`;
+            <li id="${dataList.id}" class="js-card">
+            <h2>${dataList.name}</h2>
+            <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>
+             </li>`;
     } else {
       listShows.innerHTML += `
-        <div class="fav-container"><li>
-        <h2 class="fav-title">${dataList.name}</h2>
-        <img class="fav-image" src="${dataList.image.medium}"/>
-         </li></div>`;
+        <li id="${dataList.id}" class="js-card">
+        <h2>${dataList.name}</h2>
+        <img src="${dataList.image.medium}"/>
+         </li>`;
     }
   }
+  addListenerToShows();
 }
 
 //FUNCIÓN MANEJADORA
 function handlerClick(event) {
-  event.preventDefault;
+  event.preventDefault();
   callToApi();
 }
 
 //EVENTO
 btn.addEventListener("click", handlerClick);
 
-//FILTRAR DATOS
-
-// function filterData() {
-//   const filter = inputText.value;
-
-//   filterDataShow = shows.filter((show) => show.name.includes(inputText));
-
-//   for (const showFav of filterDataShow) {
-//     const item = document.createElement("li");
-//     item.innerHTML = `${showFav.name} <img src=${showFav.image.medium} alt="image">`;
-//     showList.appendChild(newItem);
-//   }
-// }
-
 //FAVORITAS
-
-// const listShowsFavorites = document.querySelector(".js-favorite");
-// let favoriteShows = [];
-// for (let i = 0; i < favoriteShows.length; i++) {}
-
-function handlerClickFav(event) {
-  const whereTheUserClicked = event.currentTarget;
-  whereTheUserClicked.classList.toggle("favorite");
-}
-function addFavoriteShow() {
-  const listShowsFavorites = document.querySelectorAll(".js-list");
-  for (const favShows of listShowsFavorites) {
-    favShows.classList.add("favorite");
-    favShows.addEventListener("click", handlerClickFav);
+function addListenerToShows() {
+  const listShowsFav = document.querySelectorAll(".js-card");
+  for (const listFav of listShowsFav) {
+    listFav.addEventListener("click", handlerClickFav);
   }
 }
+
+function handlerClickFav(event) {
+  const showCardFav = event.currentTarget;
+  showCardFav.classList.toggle("favorite");
+}
+
+addListenerToShows();

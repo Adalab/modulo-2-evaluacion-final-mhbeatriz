@@ -13,20 +13,31 @@
 </head>
 
 <body>
-    <header>
-        <div class="header-logo"><img class="logo" src="./images/gregr.png"></div>
-    </header>
-    <main class="main">
-        <h1 class="title">Búsqueda de series</h1>
-        <form class="form">
-            <input class="text js-text" type="text" placeholder="introduce el nombre de una serie">
-            <button class="button js-button" type="button">Buscar</button>
-        </form>
-        <ul class="list js-list"></ul>
-        <div>
-            <ul class="favorite"></ul>
-        </div>
-    </main>
+    <div class="container">
+        <header>
+            <div class="header-logo"><img class="logo" src="./images/gregr.png"></div>
+        </header>
+        <main class="main">
+            <h1 class="title">Búsqueda de series</h1>
+            <form class="form">
+                <input class="text js-text" type="text" placeholder="introduce el nombre de una serie">
+                <button class="button js-button" type="button">Buscar</button>
+            </form>
+            <div class="containerShows">
+                <section>
+                    <ul class="list js-list"></ul>
+                </section>
+                <section>
+                    <h3 class="titleFav" hidden>Mis series favoritas</h3>
+                    <ul class="js-listFav"></ul>
+                </section>
+            </div>
+        </main>
+        <!-- <footer class="footer">
+            <small class="copy">&copy;BeatrizMendoza</small>
+            <img class="footer-logo" src="./images/gregr.png">
+        </footer> -->
+    </div>
     <script src="./js/main.js"></script>
 </body>
 
