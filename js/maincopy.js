@@ -20,27 +20,41 @@ function callToApi() {
 
 //PINTAR SERIES
 function paintShows(data) {
+  listShows.innerHTML = ``;
+  if (data.length === 0) {
+    listShows.innerHTML = `<li><p>vacio</p></li>`;
+    return;
+  }
   for (let i = 0; i < data.length; i++) {
     console.log(data[i].show);
     const dataList = data[i].show;
-    //buscar si la paleta que se está pintando esta en favoritos
-    const isPresent = fav.find((favoriteId) => favoriteId === dataList.id);
-
-    if (isPresent === undefined) {
-      listShowsFav.innerHTML += `
-      <li data-id="${dataList.id}" class="js-card">
-      <h2>${dataList.name}</h2>
-      <img src="${dataList.image.medium}"/>
-       </li>`;
-    } else {
-      listShowsFav.innerHTML += `
-      <li data-id="${dataList.id}" class="js-card favorite">
-      <h2>${dataList.name}</h2>
-      <img src="${dataList.image.medium}"/>
-       </li>`;
-    }
+    listShows.innerHTML += `
+          <li data-id="${dataList.id}" class="js-card">
+            <h2>${dataList.name}</h2>
+             <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>
+           </li>`;
+    listShows.innerHTML += `
+          <li data-id="${dataList.id}" class="js-card">
+            <h2>${dataList.name}</h2>
+            <img src="${dataList.image.medium}"/>
+          </li>`;
   }
-  addListenerToShows();
+}
+function paintShowsFav(data) {
+  listShowsFav.innerHTML = ``;
+  for (let i = 0; i < data.length; i++) {
+    const dataList = data[i].show;
+    listShowsFav.innerHTML += `
+     <li data-id="${dataList.id}" class="js-card">
+        <h2>${dataList.name}</h2>
+        <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>
+        </li>`;
+    listShowsFav.innerHTML += `
+          <li data-id="${dataList.id}" class="js-card favorite">
+            <h2>${dataList.name}</h2>
+            <img src="${dataList.image.medium}"/>
+          </li>`;
+  }
 }
 
 //FUNCIÓN MANEJADORA
@@ -76,6 +90,7 @@ function handlerClickFav(event) {
   } else {
     fav = fav.filter((favoriteId) => favoriteId !== showId);
   }
+  paintShows(data);
   console.log(fav);
 }
 

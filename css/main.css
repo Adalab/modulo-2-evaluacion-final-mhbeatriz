@@ -78,7 +78,7 @@
   border: black solid 2px;
 }
 
-.footer {
+/* .footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -91,7 +91,7 @@
 }
 .footer-logo {
   width: 100px;
-}
+} */
 
 .js-card {
   border: lightslategray solid 2px;
@@ -106,6 +106,7 @@
   background-color: lightgrey;
   width: 210px;
   color: red;
+  list-style-type: none;
 }
 .list {
   display: flex;

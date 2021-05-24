@@ -4,9 +4,10 @@ const inputText = document.querySelector(".js-text");
 const btn = document.querySelector(".js-button");
 const listShows = document.querySelector(".js-list");
 const listShowsFav = document.querySelector(".js-listFav");
+const form = document.querySelector(".form");
 
 //VARIABLES
-// let shows = [];
+let shows = [];
 let fav = [];
 
 //LLAMAR A LA API
@@ -24,7 +25,13 @@ function paintShows(data) {
     console.log(data[i].show);
     const dataList = data[i].show;
     //buscar si la paleta que se está pintando esta en favoritos
-    const isPresent = fav.find((favoriteId) => favoriteId === dataList.id);
+    // const isPresent = fav.find((favoriteId) => favoriteId === dataList.id);
+    // let classFavorite = "";
+    // if (isPresent === undefined) {
+    //   classFavorite = "";
+    // } else {
+    //   classFavorite = "favorite";
+    // }
 
     if (dataList.image === null) {
       listShows.innerHTML += `
@@ -40,19 +47,19 @@ function paintShows(data) {
          </li>`;
     }
 
-    if (dataList.image === null) {
-      listShowsFav.innerHTML += `
-            <li data-id="${dataList.id}" class="js-card favorite">
-            <h2>${dataList.name}</h2>
-            <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>
-             </li>`;
-    } else {
-      listShowsFav.innerHTML += `
-        <li data-id="${dataList.id}" class="js-card favorite">
-        <h2>${dataList.name}</h2>
-        <img src="${dataList.image.medium}"/>
-         </li>`;
-    }
+    // if (dataList.image === null) {
+    //   listShowsFav.innerHTML += `
+    //         <li data-id="${dataList.id}" class="js-card favorite">
+    //         <h2>${dataList.name}</h2>
+    //         <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>
+    //          </li>`;
+    // } else {
+    //   listShows.innerHTML += `
+    //     <li data-id="${dataList.id}" class="js-card favorite">
+    //     <h2>${dataList.name}</h2>
+    //     <img src="${dataList.image.medium}"/>
+    //      </li>`;
+    // }
   }
   addListenerToShows();
 }
@@ -64,33 +71,34 @@ function handlerClick(event) {
 }
 
 //EVENTO
+form.addEventListener("submit", handlerClick);
 btn.addEventListener("click", handlerClick);
 
 //FAVORITAS
-
 function addListenerToShows() {
   const listShowsFav = document.querySelectorAll(".js-card");
   for (const listFav of listShowsFav) {
     listFav.addEventListener("click", handlerClickFav);
   }
 }
-
 function handlerClickFav(event) {
-  //IDENTIFICAR LA LI PULSADA
+  //identificar la li pulsada
   const showCardFav = event.currentTarget;
   showCardFav.classList.toggle("favorite");
 
-  //OBTENER INFO ASOCIADA AL ARRAY FAV
+  //obtener info asociada al array fav
   const showId = showCardFav.dataset.id;
 
-  //BUSCAR SI LA IMG CLICKADA ESTA EN FAV
+  //buscar si la img clickada esta en favoritos
   const isPresent = fav.find((favoriteId) => favoriteId === showId);
-  if (showId === undefined) {
-    fav.push(showId);
+  if (isPresent === undefined) {
+    fav.push(parseInt(showId));
   } else {
-    fav = fav.filter((favoriteId) => favoriteId !== showId);
+    fav = fav.filter((favoriteId) => favoriteId !== parseInt(showId));
   }
   console.log(fav);
 }
 
 addListenerToShows();
+
+// RESET
