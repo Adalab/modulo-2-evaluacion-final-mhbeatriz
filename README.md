@@ -1,4 +1,4 @@
-# Mis series favoritas 📺
+# NetFlex 📺
 
 Se trata de una web interactica hecha con JavaScript para buscar series y guardar como favoritas aquellas seleccionadas.
 
