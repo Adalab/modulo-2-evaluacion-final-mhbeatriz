@@ -1,7 +1,6 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
 }
 .header-logo {
   display: flex;
@@ -15,10 +14,12 @@
   margin-top: 40px;
   margin-bottom: 20px;
   width: 100px;
-  height: 50px;
+  /* height: 50px; */
 }
 .container {
   background-color: black;
+  height: 100vh;
+  width: 100vw;
 }
 /* .container {
   width: 100vw;
@@ -126,13 +127,18 @@
 }
 .nameShow {
   text-align: center;
+  color: white;
 }
 .list {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-end;
   list-style-type: none;
+  /* display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-row: 1fr 1fr 1fr;
+  border-left: red solid 5px;
 }
 .containerShows {
   margin-top: 10px;
@@ -141,10 +147,17 @@
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
+  /* border: 2px solid red; */
+}
+
+.section1 {
+  width: 80%;
+  margin-top: 30px;
 }
 
 .titleFav {
   margin: 20px;
+  color: white;
 }
 .js-listFav {
   padding: 10px;

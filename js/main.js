@@ -61,13 +61,13 @@ function paintShows(data) {
     if (dataList.image) {
       listShows.innerHTML += `
           <li data-id="${dataList.id}" class="js-card">
-            <h2>${dataList.name}</h2>
+            <h2 class="nameShow">${dataList.name}</h2>
             <img src="${dataList.image.medium}"/>
           </li>`;
     } else {
       listShows.innerHTML += `
           <li data-id="${dataList.id}" class="js-card">
-            <h2>${dataList.name}</h2>
+            <h2 class="nameShow">${dataList.name}</h2>
              <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>
            </li>`;
     }
