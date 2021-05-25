@@ -10,4 +10,5 @@ En este proyecto he usado esta API: http://api.tvmaze.com/search/shows?q=,  HTML
 A Iván, Dayana, Miguel y Yanelis por todo el esfuerzo que han hecho por enseñarnos algo completamente nuevo para nosotras.
 
 
-* Cualquier feedback es de gran ayuda
+
+Cualquier feedback es de gran ayuda
