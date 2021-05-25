@@ -5,17 +5,19 @@ const btn = document.querySelector(".js-button");
 const listShows = document.querySelector(".js-list");
 const listShowsFav = document.querySelector(".js-listFav");
 const form = document.querySelector(".form");
+
 //VARIABLES
 let shows = [];
 let fav = [];
+
 //LLAMAR A LA API
 function callToApi() {
   fetch(`//api.tvmaze.com/search/shows?q=${inputText.value}`)
     .then((response) => response.json())
     .then((data) => {
-      shows = data; //no estaba guardado los shows en la variable global
+      shows = data;
       paintShows(data);
-      addListenerToShows(); //cam
+      addListenerToShows();
     });
 }
 //PINTAR SERIES
@@ -91,14 +93,17 @@ function paintShowsFav(data) {
     }
   }
 }
+
 //FUNCIÓN MANEJADORA
 function handlerClick(event) {
   event.preventDefault();
   callToApi();
 }
+
 //EVENTO
 form.addEventListener("submit", handlerClick);
 btn.addEventListener("click", handlerClick);
+
 //FAVORITAS
 function addListenerToShows() {
   const listShowsFav = document.querySelectorAll(".js-card");
@@ -122,35 +127,34 @@ function handlerClickFav(event) {
     fav = fav.filter((favoriteId) => favorite.show.id !== showId);
   }
   paintShowsFav(fav);
-  localStorage.setItem("fav", JSON.stringify(fav));
+  setLocalStorage();
 }
 addListenerToShows();
 
-// //LOCAL STORAGE
+//LOCAL STORAGE
+//ADD localStorage
+function setLocalStorage() {
+  localStorage.setItem("fav", JSON.stringify(fav));
+}
 
-// //add localStorage
-// function setLocalStorage() {
-//   localStorage.setItem("fav", JSON.stringify(fav));
-// }
-// //get localStorage
+// //GET localStorage
+function getLocalStorage() {
+  let getLocalFav = localStorage.getItem("fav");
+  if (getLocalFav === null) {
+    fav = [];
+  } else {
+    const array = JSON.parse(getLocalFav);
+    fav = array;
+    paintShowsFav(fav);
+  }
+}
+getLocalStorage();
 
-// function getLocalStorage() {
-//   let getLocalFav = JSON.parse(localStorage.getItem("fav"));
-//   if (getLocalFav !== null) {
-//     fav = getLocalFav;
-//   }
-//   paintShowsFav(fav);
-// }
-
-//RESET
+// RESET;
 const resetBtn = document.querySelector(".reset");
 function removeFavs() {
-  const updateFavs = fav.splice(index, 1);
-  localStorage.setItem("fav", JSON.stringify(favs));
-
-  const favsData = localStorage.getItem("fav");
-  if (favsData !== null) {
-    fav = JSON.parse(favsData);
-  }
+  fav = [];
+  setLocalStorage();
+  paintShowsFav(fav);
 }
 resetBtn.addEventListener("click", removeFavs);
