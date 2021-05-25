@@ -82,12 +82,14 @@ function paintShowsFav(data) {
       listShowsFav.innerHTML += `
               <li data-id="${dataList.id}" class="js-card">
                 <h2>${dataList.name}</h2>
+                <button type= "button" class="buttonX">X</button>
                 <img src="${dataList.image.medium}"/>
               </li>`;
     } else {
       listShowsFav.innerHTML += `
               <li data-id="${dataList.id}" class="js-card">
                   <h2>${dataList.name}</h2>
+                  <button type= "button" class="buttonX">X</button>
                   <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>
                   </li>`;
     }
@@ -158,3 +160,11 @@ function removeFavs() {
   paintShowsFav(fav);
 }
 resetBtn.addEventListener("click", removeFavs);
+
+function removeIndividual(event) {
+  const btnX = event.target.getAttribute(".buttonX");
+  fav = [];
+  setLocalStorage();
+  paintShowsFav(fav);
+}
+listShowsFav.addEventListener("click", removeIndividual);
