@@ -81,14 +81,14 @@ function paintShowsFav(data) {
     if (dataList.image) {
       listShowsFav.innerHTML += `
               <li data-id="${dataList.id}" class="js-card">
-                <h2>${dataList.name}</h2>
+                <h2 class="nameShow">${dataList.name}</h2>
                 <button type= "button" class="buttonX">X</button>
                 <img src="${dataList.image.medium}"/>
               </li>`;
     } else {
       listShowsFav.innerHTML += `
               <li data-id="${dataList.id}" class="js-card">
-                  <h2>${dataList.name}</h2>
+                  <h2 class="nameShow">${dataList.name}</h2>
                   <button type= "button" class="buttonX">X</button>
                   <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>
                   </li>`;

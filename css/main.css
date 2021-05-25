@@ -7,8 +7,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: black;
-  opacity: 0.6;
+  /* background-color: black; */
 }
 .logo {
   transform: scale(4);
@@ -18,7 +17,9 @@
   width: 100px;
   height: 50px;
 }
-
+.container {
+  background-color: black;
+}
 /* .container {
   width: 100vw;
   height: 100vh;
@@ -39,26 +40,28 @@
 }
 .form {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-top: 15px;
 }
 .title {
   text-align: center;
   text-transform: lowercase;
-  color: black;
+  color: white;
   margin-bottom: 20px;
   font-size: 60px;
 }
 .title::first-letter {
   text-transform: uppercase;
 }
-
+.subtitle {
+  color: white;
+}
 .text {
   width: 400px;
-  height: 35px;
+  height: 30px;
   padding: 10px;
-  margin-bottom: 15px;
   font-size: 18px;
   border: none;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.32);
@@ -66,7 +69,7 @@
 
 .button {
   width: 150px;
-  height: 40px;
+  height: 50px;
   background-color: red;
   border: none;
   color: white;
@@ -78,12 +81,10 @@
   border: black solid 2px;
 }
 
-/* .footer {
+.footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: black;
-  opacity: 0.6;
 }
 .copy {
   margin-left: 25px;
@@ -91,22 +92,40 @@
 }
 .footer-logo {
   width: 100px;
-} */
+}
 
 .js-card {
-  border: lightslategray solid 2px;
   margin-bottom: 20px;
   width: 210px;
   border-radius: 10px;
   margin: 15px;
+  list-style-type: none;
 }
 .favorite {
   border: solid 5px red;
   border-radius: 10px;
-  background-color: lightgrey;
   width: 210px;
   color: red;
   list-style-type: none;
+}
+.buttonX {
+  width: 20px;
+  height: 20px;
+  border-radius: 30px;
+  border: none;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(50%, 120%);
+}
+.buttonX:hover {
+  background-color: red;
+  color: black;
+}
+.nameShow {
+  text-align: center;
 }
 .list {
   display: flex;
@@ -131,7 +150,6 @@
   padding: 10px;
   margin: 20px;
 }
-
 .reset {
   width: 100px;
   margin-left: 20px;
@@ -141,10 +159,8 @@
   border-radius: 20px;
   padding: 10px;
 }
-.buttonX {
-  background-color: red;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
+.reset:hover {
+  background-color: black;
+  color: red;
+  border: red solid 2px;
 }
