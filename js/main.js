@@ -126,7 +126,7 @@ function handlerClickFav(event) {
   if (isPresent === undefined) {
     fav.push(show);
   } else {
-    fav = fav.filter((favoriteId) => favorite.show.id !== showId);
+    fav = fav.filter((favorite) => favorite.show.id !== showId);
   }
   paintShowsFav(fav);
   setLocalStorage();
