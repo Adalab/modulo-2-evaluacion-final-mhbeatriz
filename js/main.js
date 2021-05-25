@@ -17,7 +17,6 @@ function callToApi() {
     .then((data) => {
       shows = data;
       paintShows(data);
-      addListenerToShows();
     });
 }
 //PINTAR SERIES
@@ -55,23 +54,30 @@ function paintShows(data) {
     return;
   }
   for (let i = 0; i < data.length; i++) {
+    let htmlCode = "";
     console.log(data[i].show);
     const dataList = data[i].show;
+    //fav.find((favorite) => favorite.show.id === showId);
+    const isPresent = undefined;
+    if (isPresent === undefined) {
+      htmlCode += `<li data-id="${dataList.id}" class="js-card">`;
+    } else {
+      htmlCode += `<li data-id="${dataList.id}" class="js-card favorite">`;
+    }
+
+    htmlCode += `<h2 class="nameShow">${dataList.name}</h2>`;
 
     if (dataList.image) {
-      listShows.innerHTML += `
-          <li data-id="${dataList.id}" class="js-card">
-            <h2 class="nameShow">${dataList.name}</h2>
-            <img src="${dataList.image.medium}"/>
-          </li>`;
+      htmlCode += `
+            <img src="${dataList.image.medium}"/>`;
     } else {
-      listShows.innerHTML += `
-          <li data-id="${dataList.id}" class="js-card">
-            <h2 class="nameShow">${dataList.name}</h2>
-             <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>
-           </li>`;
+      htmlCode += `
+             <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>`;
     }
+    htmlCode += `</li>`;
+    listShows.innerHTML += htmlCode;
   }
+  addListenerToShows();
 }
 function paintShowsFav(data) {
   listShowsFav.innerHTML = ``;
@@ -80,20 +86,21 @@ function paintShowsFav(data) {
 
     if (dataList.image) {
       listShowsFav.innerHTML += `
-              <li data-id="${dataList.id}" class="js-card">
+              <li>
                 <h2 class="nameShow">${dataList.name}</h2>
-                <button type= "button" class="buttonX">X</button>
+                <button data-id="${dataList.id}" type= "button" class="buttonX js-card">X</button>
                 <img src="${dataList.image.medium}"/>
               </li>`;
     } else {
       listShowsFav.innerHTML += `
-              <li data-id="${dataList.id}" class="js-card">
+              <li>
                   <h2 class="nameShow">${dataList.name}</h2>
-                  <button type= "button" class="buttonX">X</button>
+                  <button data-id="${dataList.id}" type= "button" class="buttonX js-card">X</button>
                   <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>
                   </li>`;
     }
   }
+  addListenerToShows();
 }
 
 //FUNCIÓN MANEJADORA
@@ -114,15 +121,15 @@ function addListenerToShows() {
   }
 }
 function handlerClickFav(event) {
-  //IDENTIFICAR LA LI PULSADA
+  //identificar la li pulsada
   const showCardFav = event.currentTarget;
-  showCardFav.classList.toggle("favorite");
-  //OBTENER INFO ASOCIADA AL ARRAY FAV
+  //showCardFav.classList.toggle("favorite");
+  //obtener info asociada al array
   const showId = parseInt(showCardFav.dataset.id);
-  //BUSCAR SI LA IMG CLICkADA ESTA EN FAV
+  //buscar si la li clickada está en favoritos
   const show = shows.find((s) => s.show.id === showId);
-  if (show === undefined) return;
-  const isPresent = fav.find((favorite) => favorite.show.id === showId); //
+  //if (show === undefined) return;
+  const isPresent = fav.find((favorite) => favorite.show.id === showId);
   if (isPresent === undefined) {
     fav.push(show);
   } else {
@@ -131,15 +138,14 @@ function handlerClickFav(event) {
   paintShowsFav(fav);
   setLocalStorage();
 }
-addListenerToShows();
 
 //LOCAL STORAGE
-//ADD localStorage
+//add localStorage
 function setLocalStorage() {
   localStorage.setItem("fav", JSON.stringify(fav));
 }
 
-// //GET localStorage
+//get localStorage
 function getLocalStorage() {
   let getLocalFav = localStorage.getItem("fav");
   if (getLocalFav === null) {
@@ -152,7 +158,9 @@ function getLocalStorage() {
 }
 getLocalStorage();
 
-// RESET;
+// REMOVE FUNCTIONS;
+
+//all
 const resetBtn = document.querySelector(".reset");
 function removeFavs() {
   fav = [];
@@ -161,10 +169,12 @@ function removeFavs() {
 }
 resetBtn.addEventListener("click", removeFavs);
 
-function removeIndividual(event) {
+//individual
+/*function removeIndividual(event) {
+  debugger;
   const btnX = event.target.getAttribute(".buttonX");
   fav = [];
   setLocalStorage();
   paintShowsFav(fav);
 }
-listShowsFav.addEventListener("click", removeIndividual);
+listShowsFav.addEventListener("click", removeIndividual);*/

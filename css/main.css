@@ -137,7 +137,6 @@
 }
 .containerShows {
   margin-top: 10px;
-  /* background-color: lightgray; */
   width: 100%;
   display: flex;
   flex-direction: row-reverse;
@@ -202,8 +201,4 @@
   .button {
     width: 200px;
   }
-  /* .containerShows {
-    display: flex;
-    flex-direction: column;
-  } */
 }
