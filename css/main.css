@@ -17,13 +17,13 @@
 .container {
   background-image: url(../images/image.png);
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100vh;
 }
 .main {
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -123,10 +123,6 @@
 }
 .list {
   list-style-type: none;
-  /* display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center; */
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-row: 1fr 1fr 1fr;
